@@ -104,23 +104,23 @@ function Hertz_dipole_nf (r, p, R, phi, f, t=0, epsr=1.)
 
 #main program
 #EUT
-freq= 2e9;#Frequency in Hz
-a_EUT = 1     # radius of EUT
-N_dipole = 100  # number of random dipoles
+const freq= 2e9;#Frequency in Hz
+const a_EUT = 1     # radius of EUT
+const N_dipole = 100  # number of random dipoles
 const Pow=1
 const norm_p=sqrt(12*pi*c*Pow/(mu0*(2*pi*freq)^4))
-ps=p_rand(N_dipole,norm_p)
-Rs=R_rand(N_dipole, a_EUT)   # generate random dipole positions on EUT surface
-phis=2*pi*rand(N_dipole) # generate random phases
-ka=2*pi*freq/c*a_EUT; #electric size, ka=2*pi/lambda*a
+const ps=p_rand(N_dipole,norm_p)
+const Rs=R_rand(N_dipole, a_EUT)   # generate random dipole positions on EUT surface
+const phis=2*pi*rand(N_dipole) # generate random phases
+const ka=2*pi*freq/c*a_EUT; #electric size, ka=2*pi/lambda*a
 
 #Radiation pattern
-N=150;  #number of points along phi;
-twoDsquareoverlambda=2*(a_EUT*2)^2*c/freq
-nR=100
-reduced_dist=logspace(-1,2,nR)
-dist = twoDsquareoverlambda * reduced_dist.+a_EUT; #Measurement sphere radius in m
-R=R_rand(N, 1) #measurement position
+const N=500;  #number of points along phi;
+const twoDsquareoverlambda=2*(a_EUT*2)^2*c/freq
+const nR=100
+const reduced_dist=logspace(-1,2,nR)
+const dist = twoDsquareoverlambda * reduced_dist.+a_EUT; #Measurement sphere radius in m
+const R=R_rand(N, 1) #measurement position
 
 P=Array(Float64,N,nR); # Power matrix
 for i=1:N
